@@ -1,17 +1,47 @@
-namespace Clicker
+using System;
+using System.Windows.Forms;
+
+public class ClickerGame : Form
 {
-    internal static class Program
+    private int counter = 0;
+    private Label label;
+    private Button button;
+
+    public ClickerGame()
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        label = new Label()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
-        }
+            Text = "Counter: 0",
+            Location = new System.Drawing.Point(10, 10),
+            AutoSize = true
+        };
+
+        button = new Button()
+        {
+            Text = "Click me!",
+            Location = new System.Drawing.Point(10, 40)
+        };
+        button.Click += new EventHandler(Button_Click);
+
+        Controls.Add(label);
+        Controls.Add(button);
+
+        Text = "Clicker Game";
+        AutoSize = true;
+        AutoSizeMode = AutoSizeMode.GrowAndShrink;
+    }
+
+    private void Button_Click(object sender, EventArgs e)
+    {
+        counter++;
+        label.Text = "Counter: " + counter.ToString();
+    }
+
+    [STAThread]
+    public static void Main()
+    {
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.Run(new ClickerGame());
     }
 }
