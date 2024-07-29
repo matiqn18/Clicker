@@ -31,7 +31,7 @@ public class ClickerGame : Form
         AutoSizeMode = AutoSizeMode.GrowAndShrink;
     }
 
-    private void Button_Click(object sender, EventArgs e)
+    private void Button_Click(object? sender, EventArgs e)
     {
         counter++;
         label.Text = "Counter: " + counter.ToString();
