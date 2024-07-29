@@ -29,7 +29,9 @@ jobs:
       run: dotnet publish --configuration Release --output ./output
 
     - name: find only exe
-      run: copy .\output\*.exe .\artifacts\
+      run: |
+        mkdir artifacts
+        copy .\output\*.exe .\artifacts\
       shell: pwsh
 
     - name: Upload artifact
